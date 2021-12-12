@@ -93,6 +93,24 @@
             background: linear-gradient(#fff, #e7e8e9);
          }         
          
+         /* esto es para que funcione de buena manera la transformación, APERTURA BOCA */
+            #arriba,
+            #abajo {
+                transform-origin: 300px 200px;
+                transform-style: preserve-3D;
+                margin-top: 0px;
+                padding-top: 0px;
+            }
+
+        #arriba{
+               margin-right: 650px;
+               margin-bottom: 0px;
+               margin-left: 400px; 
+               padding-bottom: 0px;
+           } 
+
+        
+        
       </style>
       <!--ESTO SERVIRÁ PARA COMPARAR UN ANTES Y UN DESPUÉS-->
       <link href="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.css" rel="stylesheet" />
@@ -214,6 +232,43 @@
       </header>
       <!--ESTE ES EL CONTENIDO PRINCIPAL, ESTÁ DIVIVIDO EN VARIAS SECCIONES-->
       <main class="pb-5 bg-white">
+
+        <!--incio card, que serian los circulos verdes-->
+        <div class="row row-cols-1 row-cols-md-3 g-4 mx-5">
+            <div class="col-lg-4 text-center">
+              <div class="card ">
+                <img src="files/boscoso.png " class="card-img-top" alt="..." height="300px">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+                
+              </div>
+            </div>
+            <div class="col-lg-4 text-center">
+              <div class="card h-100">
+                <img src="files/boscoso.png" class="card-img-top" alt="..." height="300px">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                </div>
+                
+              </div>
+            </div>
+            <div class="col-lg-4 text-center">
+              <div class="card h-100">
+                <img src="files/boscoso.png" class="card-img-top" alt="..." height="300px">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+
+
+
          <!--SECCIÓN MAPA-->
          <section class="container" id="seccion_mapa">
             <div class="row">
@@ -343,6 +398,52 @@
                </div>
             </div>
          </section>
+
+<!--APERTURA BOCA HIPOPOTAMO-->
+         <div class="container">
+            <div class="row">
+                <div class="col-12 pt-4">
+                    <h3 class="text-center">Ángulo de apertura del hocico</h3>
+                    <div class="row py-5">
+                        <div class="col-2 text-center">0º</div>
+                        <div class="col-8 text-center">
+                            <input type="range" class="form-range" min="0" max="30" step="0.5" id="rango" value="0" />
+                        </div>
+                        <div class="col-2 text-center">120º</div>
+                    </div>
+                </div>
+                <div class="col-12 text-center">Ángulo de <span id="actual"></span>º</div>
+                <div class="col-12 text-center my-5">
+                    <img src="svg/result.svg" alt="insertar SVG con la etiqueta image" x="100" y="200" height="500" width="500" id="arriba">
+                    <img src="svg/resultdown.svg" alt="insertar SVG con la etiqueta image" x="100" y="200" height="500" width="500" id="abajo">
+                    <svg class="mx-auto" width="auto" height="auto" xmlns="http://www.w3.org/2000/svg" class="bg-light"></svg>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <script>
+            const dato = document.getElementById("rango");
+            const info = document.getElementById("actual");
+            const mandibulafloja = document.getElementById("arriba");
+            const mandibulafuerte = document.getElementById("abajo");
+
+            var angulo;
+
+            dato.onchange = function () {
+                angulo = dato.value;
+                console.log(angulo);
+                info.innerHTML = angulo * 4;
+                //a continuación se define la transformación
+                mandibulafloja.style.transform = "rotate(" + angulo * 2 + "deg)";
+                mandibulafuerte.style.transform = "rotate(-" + angulo * 2 + "deg)";
+            };
+            dato.onchange();
+        </script>
+
+        <!--CIERRE APERTURA BOCA-->
+
+
       </main>
       <!--ESTE ES EL PIE DE PÁGINA-->
       <aside>
